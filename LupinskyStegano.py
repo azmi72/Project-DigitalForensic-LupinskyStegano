@@ -85,12 +85,12 @@ num_lsb = 2
 bytes_to_recover= 10
 
 #Colours
-Home_BACK_COL = "#d0ecfd"
-ButtonColour_1 = "#90eebf"
-ButtonColour_2 = "#f39797"
-ButtonColour_3 = "#E66A82"
-Banner_Colour_1 = "#fafad2"
-Banner_Colour_2 = "#eee8aa"
+Home_BACK_COL = "#03254c" #warna background
+ButtonColour_1 = "#9dbde0" #button normal
+ButtonColour_2 = "#e6b0aa" #button exit
+ButtonColour_3 = "#E66A82" #warna backup
+Banner_Colour_1 = "#e9eef5" #warna kotak awal
+Banner_Colour_2 = "#9dbde0" #warna kotak frame
 
 mainWindow.configure(bg=Home_BACK_COL)
 
@@ -105,7 +105,7 @@ def center_window(name,w, h):
     x = (ws/2) - (w/2)
     y = (hs/2) - (h/2)  #change hs/2 to hs/4 to left window up
     name.geometry('%dx%d+%d+%d' % (w, h, x, y))
-center_window(mainWindow,600, 400)
+center_window(mainWindow,400, 400)
 mainWindow.title("Lupinsky Stegano")
 mainWindow.resizable(FALSE,FALSE)
 
@@ -530,13 +530,13 @@ class LSBSteg():
 
 
 #UI Part Start---------------------------------------------------------------
-#After Click TextButton On Encode screen
+#After Click Text File Button On Encode screen
 def click_EncodeScreen_Text():
     global filename, output_filename, text_Filename
     #Input File Chouser
     def choose_Input_file():
         global filename
-        filename = filedialog.askopenfilename(title = "Select Carrier Image",filetypes = (("jpg files","*.jpg"),("jpeg files","*.jpeg"),("png files","*.png")))
+        filename = filedialog.askopenfilename(title = "Pilih Basic Image",filetypes = (("jpg files","*.jpg"),("jpeg files","*.jpeg"),("png files","*.png")))
         filename_con = filename.replace('/', '\\')
         carrier_Entry.set(filename_con)
         EncodeFrame_EntryBox1.xview_moveto(1)
@@ -552,11 +552,11 @@ def click_EncodeScreen_Text():
     #Output File Chouser
     def choose_Output_file():
         global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
+        foldername = filedialog.askdirectory(title = "Pilih Folder Output")
         Org_filename = os.path.basename(filename)
         Org_filename = os.path.splitext(Org_filename)[0]
         if foldername != "":
-            output_filename = foldername+"/"+Org_filename+"_Encoded.png"
+            output_filename = foldername+"/"+Org_filename+"_Encoded.png" #output file yg kita buat 
         foldername_con = output_filename.replace('/', '\\')
         output_Entry.set(foldername_con)
         EncodeFrame_EntryBox2.xview_moveto(1)
@@ -639,7 +639,7 @@ def click_EncodeScreen_Text():
         #Text File Chouser
         def choose_Text_file():
             global text_Filename
-            text_Filename = filedialog.askopenfilename(title = "Select Text File",filetypes = (('text files', '*.txt'),))
+            text_Filename = filedialog.askopenfilename(title = "Pilih Text File",filetypes = (('text files', '*.txt'),))
             filename_con = text_Filename.replace('/', '\\')
             TextFile_Entry.set(filename_con)
             EncodeFrame_EntryBox3.xview_moveto(1)
@@ -725,21 +725,21 @@ def click_EncodeScreen_Text():
                 CheckVar2.set(0)
                 TextEncodeFrame6.place(x=0,y=245)
                 TextEncodeFrame_7.place(x=0,y=280)
-                Label(TextEncodeFrame6,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-                Label(TextEncodeFrame6,text="Select Text File",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+                Label(TextEncodeFrame6,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+                Label(TextEncodeFrame6,text="Pilih Text File",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-                Label(TextEncodeFrame_7,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+                Label(TextEncodeFrame_7,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
                 xscrollbar3 = Scrollbar(TextEncodeFrame_7, orient=HORIZONTAL)
                 xscrollbar3.pack(side=BOTTOM,fill=BOTH)
 
-                EncodeFrame_EntryBox3 = Entry(TextEncodeFrame_7,cursor='',textvariable=TextFile_Entry,font=("century",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
+                EncodeFrame_EntryBox3 = Entry(TextEncodeFrame_7,cursor='',textvariable=TextFile_Entry,font=("Roboto",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
                 EncodeFrame_EntryBox3.pack(side=LEFT)
 
                 xscrollbar3.config(command=EncodeFrame_EntryBox3.xview)
 
-                Label(TextEncodeFrame_7,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-                EncodeFrame_Button3 = Button(TextEncodeFrame_7,text="Select",font=("arial",12),width=6,height=1,command=choose_Text_file)
+                Label(TextEncodeFrame_7,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+                EncodeFrame_Button3 = Button(TextEncodeFrame_7,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Text_file)
                 EncodeFrame_Button3.pack(side=RIGHT)
 
 
@@ -763,8 +763,8 @@ def click_EncodeScreen_Text():
                 CheckVar1.set(0)
                 TextEncodeFrame6.place(x=70,y=245)
                 TextEncodeFrame_7.place(x=130,y=295)
-                Label(TextEncodeFrame6,text="Please Open Text Editor And\nEnter Your Text",font=("Lucida Fax",13),bg=Home_BACK_COL).pack()
-                Button(TextEncodeFrame_7,text="Open Text Editor",font=("arial",12),command=get_Editor_Data).pack()
+                Label(TextEncodeFrame6,text="Buka Text Editor dan\nKetika Pesan",font=("Roboto",13),bg=Home_BACK_COL).pack()
+                Button(TextEncodeFrame_7,text="Buka Text Editor",font=("Roboto",12),command=get_Editor_Data).pack()
 
             elif CheckVar2.get() == 0:
                 C1.config(state=NORMAL)
@@ -784,10 +784,11 @@ def click_EncodeScreen_Text():
     TextEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     Label(mainWindow,text=" ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
+    #Button Basic Image di Text File Button Encode
     TextEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     TextEncodeFrame.pack(side=TOP,anchor=W)
     Label(TextEncodeFrame,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(TextEncodeFrame,text="Carrier Image",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(TextEncodeFrame,text="Basic Image",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
     Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
@@ -803,7 +804,7 @@ def click_EncodeScreen_Text():
     xscrollbar.config(command=EncodeFrame_EntryBox1.xview)
 
     Label(TextEncodeFrame_2,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button1 = Button(TextEncodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
+    EncodeFrame_Button1 = Button(TextEncodeFrame_2,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Input_file)
     EncodeFrame_Button1.pack(side=RIGHT)
 
     TextEncodeFrame_2.pack(side=TOP,anchor=W)
@@ -840,9 +841,9 @@ def click_EncodeScreen_Text():
 
     TextEncodeFrame_5 = Frame(mainWindow,bg=Home_BACK_COL)
 
-    C1 = Checkbutton(TextEncodeFrame_5,bg=Home_BACK_COL,activebackground=Home_BACK_COL,state=DISABLED, text = "Select A Text File",font=("Roboto",13) ,command=lambda:select_Text(1),variable = CheckVar1,onvalue = 1, offvalue = 0,width=15)
+    C1 = Checkbutton(TextEncodeFrame_5,bg=Home_BACK_COL,activebackground=Home_BACK_COL,state=DISABLED, text = "Pilih File Text",font=("Roboto",13) ,command=lambda:select_Text(1),variable = CheckVar1,onvalue = 1, offvalue = 0,width=15)
     C1.pack(side=LEFT)
-    C2 = Checkbutton(TextEncodeFrame_5,bg=Home_BACK_COL,activebackground=Home_BACK_COL,state=DISABLED, text = "Enter Text Manually",font=("Roboto",13),command=lambda:select_Text(2), variable = CheckVar2,onvalue = 1, offvalue = 0,width=15)
+    C2 = Checkbutton(TextEncodeFrame_5,bg=Home_BACK_COL,activebackground=Home_BACK_COL,state=DISABLED, text = "Ketik Text Manual",font=("Roboto",13),command=lambda:select_Text(2), variable = CheckVar2,onvalue = 1, offvalue = 0,width=15)
     C2.pack(side=RIGHT)
     TextEncodeFrame_5.pack()
 
@@ -860,19 +861,19 @@ def click_EncodeScreen_Text():
     Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack(side=BOTTOM)
     TextEncodeFrame_8.pack(side=BOTTOM)
 
-    EncodeFrame_Button4 = Button(TextEncodeFrame_8,text="Back",font=("Roboto",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
+    EncodeFrame_Button4 = Button(TextEncodeFrame_8,text="Back",font=("Roboto",14,BOLD),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
     EncodeFrame_Button4.pack(side=LEFT)
     Label(TextEncodeFrame_8,text="      ",font=("Roboto",10),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button5 = Button(TextEncodeFrame_8,text="Encode",font=("Roboto",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
+    EncodeFrame_Button5 = Button(TextEncodeFrame_8,text="Encode",font=("Roboto",14,BOLD),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
     EncodeFrame_Button5.pack(side=LEFT)
 
-
+#Start Button Audio Encode
 def click_Audio_Encode_Screen():
     global filename, output_filename, text_Filename
     #Input File Chouser
     def choose_Input_file():
         global filename
-        filename = filedialog.askopenfilename(title = "Select Carrier Audio",filetypes = (("Audio files","*.wav"),))
+        filename = filedialog.askopenfilename(title = "Pilih Basic Audio",filetypes = (("Audio files","*.wav"),))
         filename_con = filename.replace('/', '\\')
         carrier_Entry.set(filename_con)
         EncodeFrame_EntryBox1.xview_moveto(1)
@@ -888,7 +889,7 @@ def click_Audio_Encode_Screen():
     #Output File Chouser
     def choose_Output_file():
         global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
+        foldername = filedialog.askdirectory(title = "Pilih Folder Output")
         Org_filename = os.path.basename(filename)
         Org_filename = os.path.splitext(Org_filename)[0]
         if foldername != "":
@@ -916,7 +917,7 @@ def click_Audio_Encode_Screen():
                     EncodeFrame_Button5.config(state=DISABLED,text="Reset",bg=ButtonColour_1)
                     EncodeFrame_Button4.config(state=DISABLED)
                     hide_data(filename, text_Filename, output_filename)
-                    messagebox.showinfo("Operation Successful","Task Compleat")
+                    messagebox.showinfo("Operation Success","Task Berhasil")
                 except:
                     messagebox.showerror("Error!!","An Unexpected Error Occurred\nPlease Try Again :-(")
                     EncodeFrame_Button5.config(text="Encode",state=NORMAL,bg=ButtonColour_1)
@@ -931,7 +932,7 @@ def click_Audio_Encode_Screen():
                     f.write(data)
                     f.close()
                     hide_data(filename, "demofile.txt", output_filename)
-                    messagebox.showinfo("Operation Successful","Task Compleat")
+                    messagebox.showinfo("Operation Success","Task Berhasil")
                     os.remove("demofile.txt")
                 except :
                     messagebox.showerror("Error!!","An Unexpected Error Occurred\nPlease Try Again :-(")
@@ -972,7 +973,7 @@ def click_Audio_Encode_Screen():
         #Text File Chouser
         def choose_Text_file():
             global text_Filename
-            text_Filename = filedialog.askopenfilename(title = "Select Text File",filetypes = (('text files', '*.txt'),))
+            text_Filename = filedialog.askopenfilename(title = "Pilih Text File",filetypes = (('text files', '*.txt'),))
             filename_con = text_Filename.replace('/', '\\')
             TextFile_Entry.set(filename_con)
             EncodeFrame_EntryBox3.xview_moveto(1)
@@ -1059,21 +1060,21 @@ def click_Audio_Encode_Screen():
                 CheckVar2.set(0)
                 AudioEncodeFrame6.place(x=0,y=245)
                 AudioEncodeFrame_7.place(x=0,y=280)
-                Label(AudioEncodeFrame6,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-                Label(AudioEncodeFrame6,text="Select Text File",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+                Label(AudioEncodeFrame6,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+                Label(AudioEncodeFrame6,text="Pilih Text File",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-                Label(AudioEncodeFrame_7,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+                Label(AudioEncodeFrame_7,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
                 xscrollbar3 = Scrollbar(AudioEncodeFrame_7, orient=HORIZONTAL,bg=Home_BACK_COL)
                 xscrollbar3.pack(side=BOTTOM,fill=BOTH)
 
-                EncodeFrame_EntryBox3 = Entry(AudioEncodeFrame_7,cursor='',textvariable=TextFile_Entry,font=("century",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
+                EncodeFrame_EntryBox3 = Entry(AudioEncodeFrame_7,cursor='',textvariable=TextFile_Entry,font=("Roboto",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
                 EncodeFrame_EntryBox3.pack(side=LEFT)
 
                 xscrollbar3.config(command=EncodeFrame_EntryBox3.xview)
 
-                Label(AudioEncodeFrame_7,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-                EncodeFrame_Button3 = Button(AudioEncodeFrame_7,text="Select",font=("arial",12),width=6,height=1,command=choose_Text_file)
+                Label(AudioEncodeFrame_7,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+                EncodeFrame_Button3 = Button(AudioEncodeFrame_7,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Text_file)
                 EncodeFrame_Button3.pack(side=RIGHT)
 
 
@@ -1096,8 +1097,8 @@ def click_Audio_Encode_Screen():
                 CheckVar1.set(0)
                 AudioEncodeFrame6.place(x=70,y=245)
                 AudioEncodeFrame_7.place(x=130,y=295)
-                Label(AudioEncodeFrame6,text="Please Open Text Editor And\nEnter Your Text",font=("Lucida Fax",13),bg=Home_BACK_COL).pack()
-                Button(AudioEncodeFrame_7,text="Open Text Editor",font=("arial",12),command=get_Editor_Data).pack()
+                Label(AudioEncodeFrame6,text="Buka Text Editor dan\nKetik Pesan",font=("Roboto",13),bg=Home_BACK_COL).pack()
+                Button(AudioEncodeFrame_7,text="Buka Text Editor",font=("Roboto",12),command=get_Editor_Data).pack()
 
             elif CheckVar2.get() == 0:
                 C1.config(state=NORMAL)
@@ -1115,286 +1116,97 @@ def click_Audio_Encode_Screen():
     for i in mainWindow.winfo_children():
         i.destroy()
     AudioEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     AudioEncodeFrame.pack(side=TOP,anchor=W)
-    Label(AudioEncodeFrame,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(AudioEncodeFrame,text="Carrier Audio",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(AudioEncodeFrame,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioEncodeFrame,text="Basic Audio",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(AudioEncodeFrame_2,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioEncodeFrame_2,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar = Scrollbar(AudioEncodeFrame_2, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar.pack(side=BOTTOM,fill=BOTH)
 
-    EncodeFrame_EntryBox1 = Entry(AudioEncodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
+    EncodeFrame_EntryBox1 = Entry(AudioEncodeFrame_2,cursor='',textvariable=carrier_Entry,font=("Roboto",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
     EncodeFrame_EntryBox1.pack(side=LEFT)
 
     xscrollbar.config(command=EncodeFrame_EntryBox1.xview)
 
-    Label(AudioEncodeFrame_2,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button1 = Button(AudioEncodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
+    Label(AudioEncodeFrame_2,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button1 = Button(AudioEncodeFrame_2,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Input_file)
     EncodeFrame_Button1.pack(side=RIGHT)
 
     AudioEncodeFrame_2.pack(side=TOP,anchor=W)
 
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
     AudioEncodeFrame3.pack(side=TOP,anchor=W)
-    Label(AudioEncodeFrame3,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(AudioEncodeFrame3,text="Output Audio",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(AudioEncodeFrame3,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioEncodeFrame3,text="Output Audio",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(AudioEncodeFrame_4,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioEncodeFrame_4,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar2 = Scrollbar(AudioEncodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar2.pack(side=BOTTOM,fill=BOTH)
 
-    EncodeFrame_EntryBox2 = Entry(AudioEncodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
+    EncodeFrame_EntryBox2 = Entry(AudioEncodeFrame_4,cursor='',font=("Roboto",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
     EncodeFrame_EntryBox2.pack(side=LEFT)
     xscrollbar2.config(command=EncodeFrame_EntryBox2.xview)
 
-    Label(AudioEncodeFrame_4,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button2 = Button(AudioEncodeFrame_4,text="Select",font=("arial",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
+    Label(AudioEncodeFrame_4,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button2 = Button(AudioEncodeFrame_4,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
     EncodeFrame_Button2.pack(side=RIGHT)
 
     AudioEncodeFrame_4.pack(side=TOP,anchor=W)
 
-    Label(mainWindow,text="  ",font=("arial",4),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",4),bg=Home_BACK_COL).pack()
 
     AudioEncodeFrame_5 = Frame(mainWindow,bg=Home_BACK_COL)
 
-    C1 = Checkbutton(AudioEncodeFrame_5,activebackground=Home_BACK_COL,bg=Home_BACK_COL,state=DISABLED, text = "Select A Text File",font=("Lucida Bright",13) ,command=lambda:select_Text(1),variable = CheckVar1,onvalue = 1, offvalue = 0,width=15)
+    C1 = Checkbutton(AudioEncodeFrame_5,activebackground=Home_BACK_COL,bg=Home_BACK_COL,state=DISABLED, text = "Pilih File Text",font=("Roboto",13) ,command=lambda:select_Text(1),variable = CheckVar1,onvalue = 1, offvalue = 0,width=15)
     C1.pack(side=LEFT)
-    C2 = Checkbutton(AudioEncodeFrame_5,activebackground=Home_BACK_COL,bg=Home_BACK_COL,state=DISABLED, text = "Enter Text Manually",font=("Lucida Bright",13),command=lambda:select_Text(2), variable = CheckVar2,onvalue = 1, offvalue = 0,width=15)
+    C2 = Checkbutton(AudioEncodeFrame_5,activebackground=Home_BACK_COL,bg=Home_BACK_COL,state=DISABLED, text = "Ketik Text Manual",font=("Roboto",13),command=lambda:select_Text(2), variable = CheckVar2,onvalue = 1, offvalue = 0,width=15)
     C2.pack(side=RIGHT)
     AudioEncodeFrame_5.pack()
 
-    Label(mainWindow,text="  ",font=("arial",50),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",50),bg=Home_BACK_COL).pack()
     AudioEncodeFrame6 = Frame(mainWindow,bg=Home_BACK_COL)
     #AudioEncodeFrame6.place()#pack(side=TOP,anchor=W)
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
     AudioEncodeFrame_7 = Frame(mainWindow)
 
     #pack(side=TOP,anchor=W)
 
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
     AudioEncodeFrame_8 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack(side=BOTTOM)
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack(side=BOTTOM)
     AudioEncodeFrame_8.pack(side=BOTTOM)
 
-    EncodeFrame_Button4 = Button(AudioEncodeFrame_8,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
+    EncodeFrame_Button4 = Button(AudioEncodeFrame_8,text="Back",font=("Roboto",14,BOLD),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
     EncodeFrame_Button4.pack(side=LEFT)
-    Label(AudioEncodeFrame_8,text="      ",font=("arial",10),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button5 = Button(AudioEncodeFrame_8,text="Encode",font=("Lucida Bright",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
+    Label(AudioEncodeFrame_8,text="      ",font=("Roboto",10),bg=Home_BACK_COL).pack(side=LEFT)
+    EncodeFrame_Button5 = Button(AudioEncodeFrame_8,text="Encode",font=("Roboto",14,BOLD),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_encode)
     EncodeFrame_Button5.pack(side=LEFT)
 
-
-def click_Image_Encode_Screen():
-    global filename, output_filename, text_Filename
-    #Input File Chouser
-    def choose_Input_file():
-        global filename
-        filename = filedialog.askopenfilename(title = "Select Carrier Image",filetypes = (("jpg files","*.jpg"),("jpeg files","*.jpeg"),("png files","*.png")))
-        filename_con = filename.replace('/', '\\')
-        carrier_Entry.set(filename_con)
-        EncodeFrame_EntryBox1.xview_moveto(1)
-        if EncodeFrame_EntryBox1.get() != "":
-            EncodeFrame_Button2.config(state=NORMAL)
-            EncodeFrame_Button1.config(text="Change")
-        else:
-            EncodeFrame_Button2.config(state=DISABLED)
-            EncodeFrame_Button1.config(text="Select")
-            EncodeFrame_Button3.config(state=DISABLED)
-            EncodeFrame_Button5.config(state=DISABLED)
-            carrier_Entry.set("")
-    #Output File Chouser
-    def choose_Output_file():
-        global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
-        Org_filename = os.path.basename(filename)
-        Org_filename = os.path.splitext(Org_filename)[0]
-        if foldername != "":
-            output_filename = foldername+"/"+Org_filename+"_Encoded.png"
-        foldername_con = output_filename.replace('/', '\\')
-        output_Entry.set(foldername_con)
-        EncodeFrame_EntryBox2.xview_moveto(1)
-        if EncodeFrame_EntryBox2.get() != "":
-            EncodeFrame_Button2.config(text="Change")
-            EncodeFrame_Button3.config(state=NORMAL)
-        else:
-            EncodeFrame_Button2.config(text="Select")
-            EncodeFrame_Button3.config(state=DISABLED)
-            EncodeFrame_Button5.config(state=DISABLED)
-            output_Entry.set("")
-
-    #Audio File Chouser
-    def choose_IN_Image__file():
-        global text_Filename
-        text_Filename = filedialog.askopenfilename(title = "Select Image File",filetypes = (("jpg files","*.jpg"),("jpeg files","*.jpeg"),("png files","*.png")))
-        filename_con = text_Filename.replace('/', '\\')
-        TextFile_Entry.set(filename_con)
-        EncodeFrame_EntryBox3.xview_moveto(1)
-        if EncodeFrame_EntryBox3.get() != "":
-            EncodeFrame_Button3.config(text="Change")
-            EncodeFrame_Button5.config(state=NORMAL)
-        else:
-            EncodeFrame_Button3.config(text="Select")
-            EncodeFrame_Button5.config(state=DISABLED)
-            TextFile_Entry.set("")
-
-    def main_Image_encode():
-        global filename,output_filename,text_Filename
-        if EncodeFrame_Button5['text'] == "Encode":
-            try:
-                EncodeFrame_Button5.config(state=DISABLED,text="Reset",bg=ButtonColour_1)
-                EncodeFrame_Button4.config(state=DISABLED)
-                merge(filename, text_Filename, output_filename)
-                messagebox.showinfo("Operation Successful","Task Compleat")
-            except:
-                messagebox.showerror("Error!!","An Unexpected Error Occurred\nPlease Try Again :-(")
-                EncodeFrame_Button5.config(text="Encode",state=NORMAL,bg=ButtonColour_1)
-                EncodeFrame_Button4.config(state=NORMAL)
-            EncodeFrame_Button5.config(state=NORMAL)
-            EncodeFrame_Button4.config(state=NORMAL)
-        elif EncodeFrame_Button5['text'] == "Reset":
-            EncodeFrame_Button5.config(text="Encode",bg=ButtonColour_1)
-            carrier_Entry.set("")
-            output_Entry.set("")
-            TextFile_Entry.set("")
-            text_editor_data.set("")
-            filename = ""
-            output_filename = ""
-            text_Filename = ""
-            CheckVar1.set(0)
-            CheckVar2.set(0)
-            click_Image_Encode_Screen()
-
-    def back_Btn_Fun():
-        global filename,output_filename,text_Filename
-        carrier_Entry.set("")
-        output_Entry.set("")
-        TextFile_Entry.set("")
-        text_editor_data.set("")
-        filename = ""
-        output_filename = ""
-        text_Filename = ""
-        CheckVar1.set(0)
-        CheckVar2.set(0)
-        show_EncodeScreen()
-
-
-    for i in mainWindow.winfo_children():
-        i.destroy()
-    ImageEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",10),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageEncodeFrame.pack(side=TOP,anchor=W)
-    Label(ImageEncodeFrame,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(ImageEncodeFrame,text="Carrier Image",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
-
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(ImageEncodeFrame_2,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-
-    xscrollbar = Scrollbar(ImageEncodeFrame_2, orient=HORIZONTAL)
-    xscrollbar.pack(side=BOTTOM,fill=BOTH)
-
-    EncodeFrame_EntryBox1 = Entry(ImageEncodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
-    EncodeFrame_EntryBox1.pack(side=LEFT)
-
-    xscrollbar.config(command=EncodeFrame_EntryBox1.xview,bg=Home_BACK_COL)
-
-    Label(ImageEncodeFrame_2,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button1 = Button(ImageEncodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
-    EncodeFrame_Button1.pack(side=RIGHT)
-
-    ImageEncodeFrame_2.pack(side=TOP,anchor=W)
-
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame3 = Frame(mainWindow)
-    Label(mainWindow,text=" ",font=("arial",8),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageEncodeFrame3.pack(side=TOP,anchor=W)
-    Label(ImageEncodeFrame3,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(ImageEncodeFrame3,text="Output Image",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
-
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(ImageEncodeFrame_4,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-
-    xscrollbar2 = Scrollbar(ImageEncodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
-    xscrollbar2.pack(side=BOTTOM,fill=BOTH)
-
-    EncodeFrame_EntryBox2 = Entry(ImageEncodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
-    EncodeFrame_EntryBox2.pack(side=LEFT)
-    xscrollbar2.config(command=EncodeFrame_EntryBox2.xview)
-
-    Label(ImageEncodeFrame_4,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button2 = Button(ImageEncodeFrame_4,text="Select",font=("arial",12),width=6,height=1,state=DISABLED,command=choose_Output_file)
-    EncodeFrame_Button2.pack(side=RIGHT)
-
-    ImageEncodeFrame_4.pack(side=TOP,anchor=W)
-
-    Label(mainWindow,text="  ",font=("arial",10),bg=Home_BACK_COL).pack()
-
-    ImageEncodeFrame_5 = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageEncodeFrame_6 = Frame(mainWindow,bg=Home_BACK_COL)
-
-
-    Label(ImageEncodeFrame_5,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(ImageEncodeFrame_5,text="Hidden Image File",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
-
-    Label(ImageEncodeFrame_6,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-
-    xscrollbar3 = Scrollbar(ImageEncodeFrame_6, orient=HORIZONTAL,bg=Home_BACK_COL)
-    xscrollbar3.pack(side=BOTTOM,fill=BOTH)
-
-    EncodeFrame_EntryBox3 = Entry(ImageEncodeFrame_6,cursor='',textvariable=TextFile_Entry,font=("century",13),xscrollcommand=xscrollbar3.set,width=33,state=DISABLED)
-    EncodeFrame_EntryBox3.pack(side=LEFT)
-
-    xscrollbar3.config(command=EncodeFrame_EntryBox3.xview)
-
-    Label(ImageEncodeFrame_6,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button3 = Button(ImageEncodeFrame_6,text="Select",font=("arial",12),width=6,height=1,state=DISABLED,command=choose_IN_Image__file)
-    EncodeFrame_Button3.pack(side=RIGHT)
-
-    ImageEncodeFrame_5.pack(side=TOP,anchor=W)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
-    ImageEncodeFrame_6.pack(side=TOP,anchor=W)
-
-    ImageEncodeFrame_7 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack(side=BOTTOM)
-    ImageEncodeFrame_7.pack(side=BOTTOM)
-
-    EncodeFrame_Button4 = Button(ImageEncodeFrame_7,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
-    EncodeFrame_Button4.pack(side=LEFT)
-    Label(ImageEncodeFrame_7,text="      ",font=("arial",10),bg=Home_BACK_COL).pack(side=LEFT)
-    EncodeFrame_Button5 = Button(ImageEncodeFrame_7,text="Encode",font=("Lucida Bright",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Image_encode)
-    EncodeFrame_Button5.pack(side=LEFT)
-
-
+#After Click Text File Button On Decode screen
 def click_DecodeScreen_Text():
     global filename, output_filename, text_Filename
     #Input File Chouser
     def choose_Input_file():
         global filename
-        filename = filedialog.askopenfilename(title = "Select Encoded Image",filetypes = (("png files","*.png"),))
+        filename = filedialog.askopenfilename(title = "Pilih Decoded Image",filetypes = (("png files","*.png"),))
         filename_con = filename.replace('/', '\\')
         carrier_Entry.set(filename_con)
         DecodeFrame_EntryBox1.xview_moveto(1)
@@ -1410,7 +1222,7 @@ def click_DecodeScreen_Text():
     #Output File Chouser
     def choose_Output_file():
         global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
+        foldername = filedialog.askdirectory(title = "Pilih Folder Output")
         Org_filename = os.path.basename(filename)
         Org_filename = os.path.splitext(Org_filename)[0]
         if foldername != "":
@@ -1438,7 +1250,7 @@ def click_DecodeScreen_Text():
                 raw = steg.decode_binary()
                 with open(output_filename, "wb") as f:
                     f.write(raw)
-                messagebox.showinfo("Operation Successful","Task Compleat")
+                messagebox.showinfo("Operation Success","Task Berhasil")
                 DecodeFrame_Button3.config(state=NORMAL)
                 raw = raw.decode("utf-8")
                 text_editor_data.set(raw)
@@ -1533,56 +1345,56 @@ def click_DecodeScreen_Text():
     for i in mainWindow.winfo_children():
         i.destroy()
     TextDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",12),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",12),bg=Home_BACK_COL).pack()
 
     TextDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     TextDecodeFrame.pack(side=TOP,anchor=W)
-    Label(TextDecodeFrame,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(TextDecodeFrame,text="Encoded Image",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(TextDecodeFrame,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(TextDecodeFrame,text="Decoded Image",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     TextDecodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(TextDecodeFrame_2,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(TextDecodeFrame_2,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar = Scrollbar(TextDecodeFrame_2, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar.pack(side=BOTTOM,fill=BOTH)
 
-    DecodeFrame_EntryBox1 = Entry(TextDecodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
+    DecodeFrame_EntryBox1 = Entry(TextDecodeFrame_2,cursor='',textvariable=carrier_Entry,font=("Roboto",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
     DecodeFrame_EntryBox1.pack(side=LEFT)
 
     xscrollbar.config(command=DecodeFrame_EntryBox1.xview)
 
-    Label(TextDecodeFrame_2,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button1 = Button(TextDecodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
+    Label(TextDecodeFrame_2,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button1 = Button(TextDecodeFrame_2,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Input_file)
     DecodeFrame_Button1.pack(side=RIGHT)
 
     TextDecodeFrame_2.pack(side=TOP,anchor=W)
 
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
     TextDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     TextDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
     TextDecodeFrame3.pack(side=TOP,anchor=W)
-    Label(TextDecodeFrame3,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(TextDecodeFrame3,text="Output Folder",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(TextDecodeFrame3,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(TextDecodeFrame3,text="Output Folder",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     TextDecodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(TextDecodeFrame_4,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(TextDecodeFrame_4,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar2 = Scrollbar(TextDecodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar2.pack(side=BOTTOM,fill=BOTH)
 
-    DecodeFrame_EntryBox2 = Entry(TextDecodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
+    DecodeFrame_EntryBox2 = Entry(TextDecodeFrame_4,cursor='',font=("Roboto",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
     DecodeFrame_EntryBox2.pack(side=LEFT)
     xscrollbar2.config(command=DecodeFrame_EntryBox2.xview)
 
-    Label(TextDecodeFrame_4,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button2 = Button(TextDecodeFrame_4,text="Select",font=("arial",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
+    Label(TextDecodeFrame_4,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button2 = Button(TextDecodeFrame_4,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
     DecodeFrame_Button2.pack(side=RIGHT)
 
     TextDecodeFrame_4.pack(side=TOP,anchor=W)
@@ -1591,27 +1403,28 @@ def click_DecodeScreen_Text():
     TextDecodeFrame_5.place(x=90,y=230)
     TextDecodeFrame_6 = Frame(mainWindow,bg=Home_BACK_COL)
     TextDecodeFrame_6.place(x=130,y=280)
-    Label(TextDecodeFrame_5,text="Preview Decoded Text In\nText Editor",font=("Lucida Fax",13),bg=Home_BACK_COL).pack()
-    DecodeFrame_Button3 = Button(TextDecodeFrame_6,text="Open Text Editor",font=("arial",12),command=preview_In_text_editor,state=DISABLED)
+    Label(TextDecodeFrame_5,text="Lihat Text Decoded\ndi Text Editor",font=("Roboto",13),bg=Home_BACK_COL).pack()
+    DecodeFrame_Button3 = Button(TextDecodeFrame_6,text="Buka Text Editor",font=("Roboto",12),command=preview_In_text_editor,state=DISABLED)
     DecodeFrame_Button3.pack()
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
     TextDecodeFrame_8 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack(side=BOTTOM)
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack(side=BOTTOM)
     TextDecodeFrame_8.pack(side=BOTTOM)
 
-    DecodeFrame_Button4 = Button(TextDecodeFrame_8,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
+    DecodeFrame_Button4 = Button(TextDecodeFrame_8,text="Back",font=("Roboto",14,BOLD),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
     DecodeFrame_Button4.pack(side=LEFT)
-    Label(TextDecodeFrame_8,text="      ",font=("arial",10),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button5 = Button(TextDecodeFrame_8,text="Decode",font=("Lucida Bright",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_Decode)
+    Label(TextDecodeFrame_8,text="      ",font=("Roboto",10),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button5 = Button(TextDecodeFrame_8,text="Decode",font=("Roboto",14,BOLD),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_Decode)
     DecodeFrame_Button5.pack(side=LEFT)
 
+#After Click Audio Button On Decode screen
 def click_DecodeScreen_Audio():
     global filename, output_filename, text_Filename
     #Input File Chouser
     def choose_Input_file():
         global filename
-        filename = filedialog.askopenfilename(title = "Select Encoded Audio",filetypes = (("wav files","*.wav"),))
+        filename = filedialog.askopenfilename(title = "Pilih Decoded Audio",filetypes = (("wav files","*.wav"),))
         filename_con = filename.replace('/', '\\')
         carrier_Entry.set(filename_con)
         DecodeFrame_EntryBox1.xview_moveto(1)
@@ -1627,7 +1440,7 @@ def click_DecodeScreen_Audio():
     #Output File Chouser
     def choose_Output_file():
         global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
+        foldername = filedialog.askdirectory(title = "Pilih Folder Output")
         Org_filename = os.path.basename(filename)
         Org_filename = os.path.splitext(Org_filename)[0]
         if foldername != "":
@@ -1654,7 +1467,7 @@ def click_DecodeScreen_Audio():
                 f = open(output_filename, "r")
                 raw = f.read()
                 f.close()
-                messagebox.showinfo("Operation Successful","Task Compleat")
+                messagebox.showinfo("Operation Success","Task Berhasil")
                 text_editor_data.set(raw)
                 DecodeFrame_Button3.config(state=NORMAL)
             except:
@@ -1748,56 +1561,56 @@ def click_DecodeScreen_Audio():
     for i in mainWindow.winfo_children():
         i.destroy()
     AudioDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",12),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",12),bg=Home_BACK_COL).pack()
 
     AudioDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     AudioDecodeFrame.pack(side=TOP,anchor=W)
-    Label(AudioDecodeFrame,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(AudioDecodeFrame,text="Encoded Audio",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(AudioDecodeFrame,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioDecodeFrame,text="Encoded Audio",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioDecodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(AudioDecodeFrame_2,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioDecodeFrame_2,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar = Scrollbar(AudioDecodeFrame_2, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar.pack(side=BOTTOM,fill=BOTH)
 
-    DecodeFrame_EntryBox1 = Entry(AudioDecodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
+    DecodeFrame_EntryBox1 = Entry(AudioDecodeFrame_2,cursor='',textvariable=carrier_Entry,font=("Roboto",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
     DecodeFrame_EntryBox1.pack(side=LEFT)
 
     xscrollbar.config(command=DecodeFrame_EntryBox1.xview)
 
-    Label(AudioDecodeFrame_2,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button1 = Button(AudioDecodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
+    Label(AudioDecodeFrame_2,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button1 = Button(AudioDecodeFrame_2,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Input_file)
     DecodeFrame_Button1.pack(side=RIGHT)
 
     AudioDecodeFrame_2.pack(side=TOP,anchor=W)
 
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
     AudioDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
     AudioDecodeFrame3.pack(side=TOP,anchor=W)
-    Label(AudioDecodeFrame3,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(AudioDecodeFrame3,text="Output Folder",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(AudioDecodeFrame3,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioDecodeFrame3,text="Output Folder",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
     AudioDecodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(AudioDecodeFrame_4,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
+    Label(AudioDecodeFrame_4,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
 
     xscrollbar2 = Scrollbar(AudioDecodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
     xscrollbar2.pack(side=BOTTOM,fill=BOTH)
 
-    DecodeFrame_EntryBox2 = Entry(AudioDecodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
+    DecodeFrame_EntryBox2 = Entry(AudioDecodeFrame_4,cursor='',font=("Roboto",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
     DecodeFrame_EntryBox2.pack(side=LEFT)
     xscrollbar2.config(command=DecodeFrame_EntryBox2.xview)
 
-    Label(AudioDecodeFrame_4,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button2 = Button(AudioDecodeFrame_4,text="Select",font=("arial",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
+    Label(AudioDecodeFrame_4,text="      ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button2 = Button(AudioDecodeFrame_4,text="Select",font=("Roboto",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
     DecodeFrame_Button2.pack(side=RIGHT)
 
     AudioDecodeFrame_4.pack(side=TOP,anchor=W)
@@ -1806,294 +1619,124 @@ def click_DecodeScreen_Audio():
     AudioDecodeFrame_5.place(x=90,y=230)
     AudioDecodeFrame_6 = Frame(mainWindow,bg=Home_BACK_COL)
     AudioDecodeFrame_6.place(x=130,y=280)
-    Label(AudioDecodeFrame_5,text="Preview Decoded Text In\nText Editor",font=("Lucida Fax",13),bg=Home_BACK_COL).pack()
-    DecodeFrame_Button3 = Button(AudioDecodeFrame_6,text="Open Text Editor",font=("arial",12),command=preview_In_text_editor,state=DISABLED)
+    Label(AudioDecodeFrame_5,text="Lihat Decoded Text \ndi Text Editor",font=("Roboto",13),bg=Home_BACK_COL).pack()
+    DecodeFrame_Button3 = Button(AudioDecodeFrame_6,text="Buka Text Editor",font=("Roboto",12),command=preview_In_text_editor,state=DISABLED)
     DecodeFrame_Button3.pack()
 
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
     AudioDecodeFrame_8 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack(side=BOTTOM)
+    Label(mainWindow,text="  ",font=("Roboto",2),bg=Home_BACK_COL).pack(side=BOTTOM)
     AudioDecodeFrame_8.pack(side=BOTTOM)
 
-    DecodeFrame_Button4 = Button(AudioDecodeFrame_8,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
+    DecodeFrame_Button4 = Button(AudioDecodeFrame_8,text="Back",font=("Roboto",14,BOLD),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
     DecodeFrame_Button4.pack(side=LEFT)
-    Label(AudioDecodeFrame_8,text="      ",font=("arial",10),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button5 = Button(AudioDecodeFrame_8,text="Decode",font=("Lucida Bright",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_Decode)
-    DecodeFrame_Button5.pack(side=LEFT)
-
-def click_DecodeScreen_Image():
-    global filename, output_filename, text_Filename
-    #Input File Chouser
-    def choose_Input_file():
-        global filename
-        filename = filedialog.askopenfilename(title = "Select Encoded Image",filetypes = (("png files","*.png"),))
-        filename_con = filename.replace('/', '\\')
-        carrier_Entry.set(filename_con)
-        DecodeFrame_EntryBox1.xview_moveto(1)
-        if DecodeFrame_EntryBox1.get() != "":
-            DecodeFrame_Button2.config(state=NORMAL)
-            DecodeFrame_Button1.config(text="Change")
-        else:
-            DecodeFrame_Button2.config(state=DISABLED)
-            DecodeFrame_Button1.config(text="Select")
-            carrier_Entry.set("")
-            DecodeFrame_Button5.config(state=DISABLED)
-
-    #Output File Chouser
-    def choose_Output_file():
-        global output_filename
-        foldername = filedialog.askdirectory(title = "Select Output Folder")
-        Org_filename = os.path.basename(filename)
-        Org_filename = os.path.splitext(Org_filename)[0]
-        if foldername != "":
-            output_filename = foldername+"/"+Org_filename+"_Decoded.png"
-        foldername_con = output_filename.replace('/', '\\')
-        output_Entry.set(foldername_con)
-        DecodeFrame_EntryBox2.xview_moveto(1)
-        if DecodeFrame_EntryBox2.get() != "":
-            DecodeFrame_Button2.config(text="Change")
-            DecodeFrame_Button5.config(state=NORMAL)
-        else:
-            DecodeFrame_Button2.config(text="Select")
-            output_Entry.set("")
-            DecodeFrame_Button5.config(state=DISABLED)
-
-
-    def main_Text_Decode():
-        global filename,output_filename,text_Filename
-        if DecodeFrame_Button5['text'] == "Decode":
-            try:
-                DecodeFrame_Button5.config(state=DISABLED,text="Reset",bg=ButtonColour_1)
-                DecodeFrame_Button4.config(state=DISABLED)
-                unmerged(filename, output_filename)
-                messagebox.showinfo("Operation Successful","Task Compleat")
-                DecodeFrame_Button3.config(state=NORMAL)
-            except Exception as E:
-                print(E)
-                messagebox.showerror("Error!!","An Unexpected Error Occurred\nPlease Try Again :-(")
-                DecodeFrame_Button5.config(text="Decode",state=NORMAL,bg=ButtonColour_1)
-                DecodeFrame_Button4.config(state=NORMAL)
-
-            DecodeFrame_Button5.config(state=NORMAL)
-            DecodeFrame_Button4.config(state=NORMAL)
-
-        elif DecodeFrame_Button5['text'] == "Reset":
-            DecodeFrame_Button5.config(text="Decode",bg=ButtonColour_1)
-            carrier_Entry.set("")
-            output_Entry.set("")
-            TextFile_Entry.set("")
-            text_editor_data.set("")
-            filename = ""
-            output_filename = ""
-            text_Filename = ""
-            CheckVar1.set(0)
-            CheckVar2.set(0)
-            click_DecodeScreen_Image()
-
-    def preview_Image():
-        image = Image.open(output_filename)
-        image.show()
-
-    def back_Btn_Fun():
-        global filename,output_filename,text_Filename
-        carrier_Entry.set("")
-        output_Entry.set("")
-        TextFile_Entry.set("")
-        text_editor_data.set("")
-        filename = ""
-        output_filename = ""
-        text_Filename = ""
-        CheckVar1.set(0)
-        CheckVar2.set(0)
-        show_DecodeScreen()
-
-
-    for i in mainWindow.winfo_children():
-        i.destroy()
-    ImageDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",12),bg=Home_BACK_COL).pack()
-
-    ImageDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageDecodeFrame.pack(side=TOP,anchor=W)
-    Label(ImageDecodeFrame,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(ImageDecodeFrame,text="Encoded Image",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
-
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
-
-    ImageDecodeFrame_2 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(ImageDecodeFrame_2,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-
-    xscrollbar = Scrollbar(ImageDecodeFrame_2, orient=HORIZONTAL,bg=Home_BACK_COL)
-    xscrollbar.pack(side=BOTTOM,fill=BOTH)
-
-    DecodeFrame_EntryBox1 = Entry(ImageDecodeFrame_2,cursor='',textvariable=carrier_Entry,font=("century",13),xscrollcommand=xscrollbar.set,width=33,state=DISABLED)
-    DecodeFrame_EntryBox1.pack(side=LEFT)
-
-    xscrollbar.config(command=DecodeFrame_EntryBox1.xview)
-
-    Label(ImageDecodeFrame_2,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button1 = Button(ImageDecodeFrame_2,text="Select",font=("arial",12),width=6,height=1,command=choose_Input_file)
-    DecodeFrame_Button1.pack(side=RIGHT)
-
-    ImageDecodeFrame_2.pack(side=TOP,anchor=W)
-
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack()
-
-    ImageDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text=" ",font=("arial",1),bg=Home_BACK_COL).pack()
-
-    ImageDecodeFrame3 = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageDecodeFrame3.pack(side=TOP,anchor=W)
-    Label(ImageDecodeFrame3,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(ImageDecodeFrame3,text="Output Folder",font=("Calisto MT",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
-
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
-
-    ImageDecodeFrame_4 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(ImageDecodeFrame_4,text="    ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-
-    xscrollbar2 = Scrollbar(ImageDecodeFrame_4, orient=HORIZONTAL,bg=Home_BACK_COL)
-    xscrollbar2.pack(side=BOTTOM,fill=BOTH)
-
-    DecodeFrame_EntryBox2 = Entry(ImageDecodeFrame_4,cursor='',font=("century",13),width=33,textvariable=output_Entry,xscrollcommand=xscrollbar2.set,state=DISABLED)
-    DecodeFrame_EntryBox2.pack(side=LEFT)
-    xscrollbar2.config(command=DecodeFrame_EntryBox2.xview)
-
-    Label(ImageDecodeFrame_4,text="      ",font=("arial",4),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button2 = Button(ImageDecodeFrame_4,text="Select",font=("arial",12),width=6,height=1,command=choose_Output_file,state=DISABLED)
-    DecodeFrame_Button2.pack(side=RIGHT)
-
-    ImageDecodeFrame_4.pack(side=TOP,anchor=W)
-
-    ImageDecodeFrame_5 = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageDecodeFrame_5.place(x=60,y=230)
-    ImageDecodeFrame_6 = Frame(mainWindow,bg=Home_BACK_COL)
-    ImageDecodeFrame_6.place(x=110,y=280)
-    Label(ImageDecodeFrame_5,text="Preview Image In Your Default\nImage Viewer",font=("Lucida Fax",13),bg=Home_BACK_COL).pack()
-    DecodeFrame_Button3 = Button(ImageDecodeFrame_6,text="Open In Image Viewer",font=("arial",12),command=preview_Image,state=DISABLED)
-    DecodeFrame_Button3.pack()
-
-    Label(mainWindow,text="  ",font=("arial",1),bg=Home_BACK_COL).pack()
-    ImageDecodeFrame_8 = Frame(mainWindow,bg=Home_BACK_COL)
-    Label(mainWindow,text="  ",font=("arial",2),bg=Home_BACK_COL).pack(side=BOTTOM)
-    ImageDecodeFrame_8.pack(side=BOTTOM)
-
-    DecodeFrame_Button4 = Button(ImageDecodeFrame_8,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,bg=ButtonColour_2,command=back_Btn_Fun)
-    DecodeFrame_Button4.pack(side=LEFT)
-    Label(ImageDecodeFrame_8,text="      ",font=("arial",10),bg=Home_BACK_COL).pack(side=LEFT)
-    DecodeFrame_Button5 = Button(ImageDecodeFrame_8,text="Decode",font=("Lucida Bright",14,BOLD,ITALIC),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_Decode)
+    Label(AudioDecodeFrame_8,text="      ",font=("Roboto",10),bg=Home_BACK_COL).pack(side=LEFT)
+    DecodeFrame_Button5 = Button(AudioDecodeFrame_8,text="Decode",font=("Roboto",14,BOLD),width=12,state=DISABLED,bg=ButtonColour_1,command=main_Text_Decode)
     DecodeFrame_Button5.pack(side=LEFT)
 
 
-def show_About():
+# def show_About():
 
-    def HomeBtn_on_enter(e):
-        HomeBtn.config(foreground= "Blue")
-    def HomeBtn_on_leave(e):
-        HomeBtn.config(foreground= "Black")
+#     def HomeBtn_on_enter(e):
+#         HomeBtn.config(foreground= "Blue")
+#     def HomeBtn_on_leave(e):
+#         HomeBtn.config(foreground= "Black")
 
-    def GITBtn_on_enter(e):
-        GITBtn.config(foreground= "Red")
-    def GITBtn_on_leave(e):
-        GITBtn.config(foreground= "Blue")
+#     def GITBtn_on_enter(e):
+#         GITBtn.config(foreground= "Red")
+#     def GITBtn_on_leave(e):
+#         GITBtn.config(foreground= "Blue")
 
-    for i in mainWindow.winfo_children():
-        i.destroy()
-    AboutFrame = Frame(mainWindow,bg=Home_BACK_COL)
-    About_banner_Frame = Frame(mainWindow,bd=5,relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2)
+#     for i in mainWindow.winfo_children():
+#         i.destroy()
+#     AboutFrame = Frame(mainWindow,bg=Home_BACK_COL)
+#     About_banner_Frame = Frame(mainWindow,bd=5,relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2)
 
-    Label(mainWindow,text=" ",font=("arial",2),bg=Home_BACK_COL).pack()
-    About_Banner = Label(About_banner_Frame,text=" Stage Tool ",font=("elephant",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
-    About_Banner.pack()
-    Label(About_banner_Frame,text=" ",font=("arial",2),bg=Banner_Colour_1).pack()
-    About_Description = Label(About_banner_Frame,text="A Steganography Tool That Allow\nUser To Hide Text & Text File\nBehind An Image & An Audio\nFile, It Also Allow You To Hide\nAn Image Behind An Image File.\nIt Use Least Significant Bit\n(LSB) Method To Hide Data\nBehind An Image Or Audio File.",font=("Lucida Calligraphy",14,ITALIC),bg=Banner_Colour_1)
-    About_Description.pack()
-    Label(About_banner_Frame,text=" ",font=("Lucida Calligraphy",4,ITALIC),bg=Banner_Colour_1).pack()
-    About_Description2 = Label(About_banner_Frame,text=" Developed By ",font=("Lucida Calligraphy",14,ITALIC,UNDERLINE),bg=Banner_Colour_1)
-    About_Description2.pack()
-    About_Description3 = Label(About_banner_Frame,text="~Hrishikesh Patra  ",font=("Lucida Calligraphy",14),bg=Banner_Colour_1)
-    About_Description3.pack()
-    About_banner_Frame.pack()
+#     Label(mainWindow,text=" ",font=("Roboto",2),bg=Home_BACK_COL).pack()
+#     About_Banner = Label(About_banner_Frame,text=" Stage Tool ",font=("Roboto",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
+#     About_Banner.pack()
+#     Label(About_banner_Frame,text=" ",font=("Roboto",2),bg=Banner_Colour_1).pack()
+#     About_Description = Label(About_banner_Frame,text="A Steganography Tool That Allow\nUser To Hide Text & Text File\nBehind An Image & An Audio\nFile, It Also Allow You To Hide\nAn Image Behind An Image File.\nIt Use Least Significant Bit\n(LSB) Method To Hide Data\nBehind An Image Or Audio File.",font=("Lucida Calligraphy",14,ITALIC),bg=Banner_Colour_1)
+#     About_Description.pack()
+#     Label(About_banner_Frame,text=" ",font=("Lucida Calligraphy",4,ITALIC),bg=Banner_Colour_1).pack()
+#     About_Description2 = Label(About_banner_Frame,text=" Developed By ",font=("Lucida Calligraphy",14,ITALIC,UNDERLINE),bg=Banner_Colour_1)
+#     About_Description2.pack()
+#     About_Description3 = Label(About_banner_Frame,text="~Hrishikesh Patra  ",font=("Lucida Calligraphy",14),bg=Banner_Colour_1)
+#     About_Description3.pack()
+#     About_banner_Frame.pack()
 
-    Label(AboutFrame,text="  ",background=Home_BACK_COL).pack(side=LEFT)
-    HomeBtn = Button(AboutFrame,text="Back To Home",font=("Copperplate Gothic Bold",10),borderwidth=0, relief=SUNKEN,background=Home_BACK_COL,activebackground=Home_BACK_COL,command=show_HomeScreen)
-    HomeBtn.pack(side=LEFT)
-    HomeBtn.bind('<Enter>', HomeBtn_on_enter)
-    HomeBtn.bind('<Leave>', HomeBtn_on_leave)
-    Label(AboutFrame,text="                                                  ",background=Home_BACK_COL).pack(side=LEFT)
-    GITBtn = Button(AboutFrame,text="Hrishikesh Patra",font=("Javanese Text",10,ITALIC),borderwidth=0, relief=SUNKEN,background=Home_BACK_COL,fg="blue",activebackground=Home_BACK_COL,command=lambda:(webbrowser.open('https://github.com/Hrishikesh7665')))
-    GITBtn.pack(side=RIGHT)
-    GITBtn.bind('<Enter>', GITBtn_on_enter)
-    GITBtn.bind('<Leave>', GITBtn_on_leave)
-    AboutFrame.pack(side=LEFT)
+#     Label(AboutFrame,text="  ",background=Home_BACK_COL).pack(side=LEFT)
+#     HomeBtn = Button(AboutFrame,text="Back To Home",font=("Copperplate Gothic Bold",10),borderwidth=0, relief=SUNKEN,background=Home_BACK_COL,activebackground=Home_BACK_COL,command=show_HomeScreen)
+#     HomeBtn.pack(side=LEFT)
+#     HomeBtn.bind('<Enter>', HomeBtn_on_enter)
+#     HomeBtn.bind('<Leave>', HomeBtn_on_leave)
+#     Label(AboutFrame,text="                                                  ",background=Home_BACK_COL).pack(side=LEFT)
+#     GITBtn = Button(AboutFrame,text="Hrishikesh Patra",font=("Javanese Text",10,ITALIC),borderwidth=0, relief=SUNKEN,background=Home_BACK_COL,fg="blue",activebackground=Home_BACK_COL,command=lambda:(webbrowser.open('https://github.com/Hrishikesh7665')))
+#     GITBtn.pack(side=RIGHT)
+#     GITBtn.bind('<Enter>', GITBtn_on_enter)
+#     GITBtn.bind('<Leave>', GITBtn_on_leave)
+#     AboutFrame.pack(side=LEFT)
 
-#After Click Encodebutton from home screen
+#After Click Encode button from home screen
 def show_EncodeScreen():
     for i in mainWindow.winfo_children():
         i.destroy()
     EncodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     encode_banner_Frame = Frame(mainWindow,bd=5,relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2)
 
-    Label(mainWindow,text=" ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
-    Label(encode_banner_Frame,text=" ",font=("elephant",1,ITALIC),bg=Banner_Colour_1).pack()
-    Encode_Banner = Label(encode_banner_Frame,text=" Encode ",font=("elephant",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
+    Label(encode_banner_Frame,text=" ",font=("Roboto",1,BOLD),bg=Banner_Colour_1).pack()
+    Encode_Banner = Label(encode_banner_Frame,text=" Encode ",font=("Roboto",35,BOLD),bg=Banner_Colour_1)
     Encode_Banner.pack()
-    Label(encode_banner_Frame,text=" ",font=("arial",2),bg=Banner_Colour_1).pack()
-    encode_Description = Label(encode_banner_Frame,text="Hide Text Text-File In Image\n& Audio File Also Image In Image",font=("Lucida Calligraphy",14,ITALIC),bg=Banner_Colour_1)
+    Label(encode_banner_Frame,text=" ",font=("Roboto",2),bg=Banner_Colour_1).pack()
+    encode_Description = Label(encode_banner_Frame,text="Hide Text ke Image & Audio File",font=("Roboto",14),bg=Banner_Colour_1)
     encode_Description.pack()
     encode_banner_Frame.pack()
 
-    Label(EncodeFrame,text=" ",font=("arial",8),bg=Home_BACK_COL).pack()
-    Text_button = Button(EncodeFrame,text="Text/Text File",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_EncodeScreen_Text,bg=ButtonColour_1)
+    Label(EncodeFrame,text=" ",font=("Roboto",8),bg=Home_BACK_COL).pack()
+    Text_button = Button(EncodeFrame,text="Text/Text File",font=("Roboto",14,BOLD),width=12,command=click_EncodeScreen_Text,bg=ButtonColour_1)
     Text_button.pack()
-    CreateToolTip(Text_button, text = "Encode Text Or Text File\nBehind An Image File")
-    Label(EncodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Audio_button = Button(EncodeFrame,text="Audio",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_Audio_Encode_Screen,bg=ButtonColour_1)
+    CreateToolTip(Text_button, text = "Encode Text/File Text \nke File Image")
+    Label(EncodeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
+    Audio_button = Button(EncodeFrame,text="Audio",font=("Roboto",14,BOLD),width=12,command=click_Audio_Encode_Screen,bg=ButtonColour_1)
     Audio_button.pack()
-    CreateToolTip(Audio_button, text = "Encode Text Or Text File\nBehind An Audio File")
-    Label(EncodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Image_button = Button(EncodeFrame,text="Image",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_Image_Encode_Screen,bg=ButtonColour_1)
-    Image_button.pack()
-    CreateToolTip(Image_button, text = "Encode An Image File\nBehind An Image File")
-    Label(EncodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Back_button = Button(EncodeFrame,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=show_HomeScreen,bg=ButtonColour_2)
+    CreateToolTip(Audio_button, text = "Encode Text/File Text \nke File Audio")
+    Label(EncodeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
+    Back_button = Button(EncodeFrame,text="Back",font=("Roboto",14,BOLD),width=12,command=show_HomeScreen,bg=ButtonColour_2)
     Back_button.pack()
     CreateToolTip(Back_button, text = "Back To Home Screen")
 
     EncodeFrame.pack()
 
 
+#After Click Decodebutton from home screen
 def show_DecodeScreen():
     for i in mainWindow.winfo_children():
         i.destroy()
     DecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     Decode_banner_Frame = Frame(mainWindow,bd=5,relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2)
 
-    Label(mainWindow,text=" ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
-    Label(Decode_banner_Frame,text=" ",font=("elephant",1,ITALIC),bg=Banner_Colour_1).pack()
-    Decode_Banner = Label(Decode_banner_Frame,text=" Decode ",font=("elephant",35,ITALIC,UNDERLINE),bg=Banner_Colour_1)
+    Label(Decode_banner_Frame,text=" ",font=("Roboto",1,BOLD),bg=Banner_Colour_1).pack()
+    Decode_Banner = Label(Decode_banner_Frame,text=" Decode ",font=("Roboto",35,BOLD),bg=Banner_Colour_1)
     Decode_Banner.pack()
-    Label(Decode_banner_Frame,text=" ",font=("arial",2),bg=Banner_Colour_1).pack()
-    Decode_Description = Label(Decode_banner_Frame,text="Extract Text From Image & Audio\nFile Also Image From Image",font=("Lucida Calligraphy",14,ITALIC),bg=Banner_Colour_1)
+    Label(Decode_banner_Frame,text=" ",font=("Roboto",2),bg=Banner_Colour_1).pack()
+    Decode_Description = Label(Decode_banner_Frame,text="Extract Text From Image & Audio\nFile Also Image From Image",font=("Roboto",14,BOLD),bg=Banner_Colour_1)
     Decode_Description.pack()
     Decode_banner_Frame.pack()
 
-    Label(DecodeFrame,text=" ",font=("arial",8),bg=Home_BACK_COL).pack()
-    Text_button = Button(DecodeFrame,text="Text/Text File",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_DecodeScreen_Text,bg=ButtonColour_1)
+    Label(DecodeFrame,text=" ",font=("Roboto",8),bg=Home_BACK_COL).pack()
+    Text_button = Button(DecodeFrame,text="Text/Text File",font=("Roboto",14,BOLD),width=12,command=click_DecodeScreen_Text,bg=ButtonColour_1)
     Text_button.pack()
-    CreateToolTip(Text_button, text = "Extract Text or Text Document\nFrom Image File")
-    Label(DecodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Audio_button = Button(DecodeFrame,text="Audio",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_DecodeScreen_Audio,bg=ButtonColour_1)
+    CreateToolTip(Text_button, text = "Extract Text/Dokumen Text\ndari File Image")
+    Label(DecodeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
+    Audio_button = Button(DecodeFrame,text="Audio",font=("Roboto",14,BOLD),width=12,command=click_DecodeScreen_Audio,bg=ButtonColour_1)
     Audio_button.pack()
-    CreateToolTip(Audio_button, text = "Extract Text or Text Document\nFrom Audio File")
-    Label(DecodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Image_button = Button(DecodeFrame,text="Image",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=click_DecodeScreen_Image,bg=ButtonColour_1)
-    Image_button.pack()
-    CreateToolTip(Image_button, text = "Extract Encoded Image\nFrom Image File")
-    Label(DecodeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
-    Back_button = Button(DecodeFrame,text="Back",font=("Lucida Bright",14,BOLD,ITALIC),width=12,command=show_HomeScreen,bg=ButtonColour_2)
+    CreateToolTip(Audio_button, text = "Extract Text/Dokumen Text\ndari File Audio")
+    Label(DecodeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
+    Back_button = Button(DecodeFrame,text="Back",font=("Roboto",14,BOLD),width=12,command=show_HomeScreen,bg=ButtonColour_2)
     Back_button.pack()
     CreateToolTip(Back_button, text = "Back To Home Screen")
 
@@ -2112,24 +1755,24 @@ def show_HomeScreen():
     homeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     home_banner_Frame = Frame(mainWindow,bd=5,relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2)
 
-    Label(mainWindow,text=" ",font=("arial",2),bg=Home_BACK_COL).pack()
+    Label(mainWindow,text=" ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
     Label(home_banner_Frame,text=" ",font=("Roboto",1,ITALIC),bg=Banner_Colour_1).pack()
     Home_Banner = Label(home_banner_Frame,text=" Lupinsky Stegano ",font=("Roboto",28,BOLD),bg=Banner_Colour_1)
     Home_Banner.pack()
     Label(home_banner_Frame,text=" ",font=("Roboto",2),bg=Banner_Colour_1).pack()
-    Home_Description = Label(home_banner_Frame,text="Fitur Untuk Encode dan Decode Text File/Audio File",font=("Roboto",10),bg=Banner_Colour_1)
+    Home_Description = Label(home_banner_Frame,text="Fitur Untuk Encode dan Decode \n Text File/Audio File \n",font=("Roboto",12),bg=Banner_Colour_1)
     Home_Description.pack()
     home_banner_Frame.pack()
 
 
-    Label(homeFrame,text=" ",font=("arial",8),bg=Home_BACK_COL).pack()
+    Label(homeFrame,text=" ",font=("Roboto",8),bg=Home_BACK_COL).pack()
     Encode_button = Button(homeFrame,text="Encode",font=("Roboto",14,BOLD),width=11,bg=ButtonColour_1,command=show_EncodeScreen)
     Encode_button.pack()
-    Label(homeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
+    Label(homeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
     Decode_button = Button(homeFrame,text="Decode",font=("Roboto",14,BOLD),width=11,bg=ButtonColour_1,command=show_DecodeScreen)
     Decode_button.pack()
-    Label(homeFrame,text=" ",font=("arial",4),bg=Home_BACK_COL).pack()
+    Label(homeFrame,text=" ",font=("Roboto",4),bg=Home_BACK_COL).pack()
     Exit_button = Button(homeFrame,text="Exit",font=("Roboto",14,BOLD),width=11,bg=ButtonColour_2,command=exit_CON)
     Exit_button.pack()
     homeFrame.pack()
