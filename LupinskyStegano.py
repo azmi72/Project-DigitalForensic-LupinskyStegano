@@ -106,7 +106,7 @@ def center_window(name,w, h):
     y = (hs/2) - (h/2)  #change hs/2 to hs/4 to left window up
     name.geometry('%dx%d+%d+%d' % (w, h, x, y))
 center_window(mainWindow,400, 400)
-mainWindow.title("Lupinsky Stegano")
+mainWindow.title("Aisyi Azmi Irsyad Stegano")
 mainWindow.resizable(FALSE,FALSE)
 
 #Main Backend Function Of Hide Image In Image And Extract Image From Image----------------------------
@@ -1566,7 +1566,7 @@ def click_DecodeScreen_Audio():
     AudioDecodeFrame = Frame(mainWindow,bg=Home_BACK_COL)
     AudioDecodeFrame.pack(side=TOP,anchor=W)
     Label(AudioDecodeFrame,text="    ",font=("Roboto",4),bg=Home_BACK_COL).pack(side=LEFT)
-    Label(AudioDecodeFrame,text="Encoded Audio",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
+    Label(AudioDecodeFrame,text="Decoded Audio",font=("Roboto",14,BOLD),relief=RAISED,bg=Banner_Colour_1,highlightthickness=3,highlightbackground=Banner_Colour_2).pack(side=LEFT)
 
     Label(mainWindow,text="  ",font=("Roboto",1),bg=Home_BACK_COL).pack()
 
@@ -1758,7 +1758,7 @@ def show_HomeScreen():
     Label(mainWindow,text=" ",font=("Roboto",2),bg=Home_BACK_COL).pack()
 
     Label(home_banner_Frame,text=" ",font=("Roboto",1,ITALIC),bg=Banner_Colour_1).pack()
-    Home_Banner = Label(home_banner_Frame,text=" Lupinsky Stegano ",font=("Roboto",28,BOLD),bg=Banner_Colour_1)
+    Home_Banner = Label(home_banner_Frame,text=" Aisyi Azmi Irsyad \n Stegano ",font=("Roboto",28,BOLD),bg=Banner_Colour_1)
     Home_Banner.pack()
     Label(home_banner_Frame,text=" ",font=("Roboto",2),bg=Banner_Colour_1).pack()
     Home_Description = Label(home_banner_Frame,text="Fitur Untuk Encode dan Decode \n Text File/Audio File \n",font=("Roboto",12),bg=Banner_Colour_1)
